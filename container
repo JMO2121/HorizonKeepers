@@ -1,0 +1,16 @@
+      <style>
+        #experienceBuilderFrame {
+            width: 50vw;
+            height: 50vh;
+            border: none;
+        }
+    </style>
+
+<header class="container">
+        <iframe
+        style="border-radius: 30px;"
+            id="experienceBuilderFrame"
+            src="https://experience.arcgis.com/experience/2377aebf4f5246569c4187325156d5d3"
+            allowfullscreen
+        ></iframe>
+    </header>

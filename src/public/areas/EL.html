@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizon Keepers : Electricity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../stylebasic.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+  * {
+    font-family: "Saira", sans-serif;
+    font-weight: 400;
+  }
+
+    #experienceBuilderFrame {
+        width: 50vw;
+        height: 50vh;
+        border: none;
+    }
+</style>
+
+<body>
+    <div class="topbar">
+        <img src="https://assets.spaceappschallenge.org/media/images/Colorway2-Color_White3x.width-440.jpegquality-60.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
+        <a class="contentRight" href="../index.html">Home</a>
+        <a class="contentRight" href="../chatareas/EL.html" target="_blank">Chat</a>
+        <button class="contentRightbutton" id="menu" onclick="">Areas</button>
+    </div>
+
+    <header class="container">
+        <iframe
+            style="width: 1134px; height: 595px;"
+            id="experienceBuilderFrame"
+            src="https://agustinaschitre.maps.arcgis.com/apps/dashboards/98e608613d964e64bc3616374ef56bba"
+            allowfullscreen
+        ></iframe>
+    </header>
+</body>
+</html>
+
+<script>    
+    button = document.getElementById("menu");
+    function dropdown() {
+        const menuButton = document.getElementById("menu");
+        let dropdown = document.getElementById("dropdown-menu");
+        if (!dropdown) {
+            dropdown = document.createElement("div");
+            dropdown.id = "dropdown-menu";
+            dropdown.style.position = "absolute";
+            dropdown.style.top = (menuButton.offsetTop + menuButton.offsetHeight) + "px";
+            dropdown.style.left = menuButton.offsetLeft + "px";
+            dropdown.style.background = "#0095ff";
+            dropdown.style.borderRadius = "7px";
+            dropdown.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+            dropdown.style.padding = "10px";
+            dropdown.style.zIndex = "1000";
+            dropdown.innerHTML = `
+            <a href="hidro.html" style="display:block; margin-bottom:8px;">Hidrology</a>
+            <a href="waste.html" style="display:block; margin-bottom:8px;">Waste</a>
+            <a href="PA.html" style="display:block; margin-bottom:8px;">public Areas</a>
+            <a href="HE.html" style="display:block; margin-bottom:8px;">Healtcare</a>
+            <a href="EL.html" style="display:block; margin-bottom:8px;">Electricity</a>
+            <a href="AGR.html" style="display:block; margin-bottom:8px;">Agriculture</a>
+            <a href="URB.html" style="display:block; margin-bottom:8px;">Urban Expansion</a>
+            `;
+            document.body.appendChild(dropdown);
+
+            document.addEventListener("click", function handler(e) {
+            if (!dropdown.contains(e.target) && e.target !== menuButton) {
+                dropdown.remove();
+                document.removeEventListener("click", handler);
+            }
+            });
+        } else {
+            dropdown.remove();
+        }
+    }
+
+    button.onmouseover = function() {
+        dropdown();
+    };
+
+    button.onmouseout = function() {
+        dropdown.onmouseout = function() {
+            dropdown();
+        };
+    };
+</script>

@@ -1,0 +1,17 @@
+{
+  "name": "Horizon Keepers",
+  "version": "1.0.0",
+  "description": "A Node.js application for uploading PNG files.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.23",
+    "node-cron": "^2.0.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
