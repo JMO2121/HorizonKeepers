@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/HorizonKeepers';
+const mongoURI = 'mongodb+srv://juanm:cQwkfryWhxFZgowM@horizonkeepers.biz3tzq.mongodb.net/';
 
 const connectDB = async () => {
     try {
