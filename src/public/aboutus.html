@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UrbanSight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="stylebasic.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    body
+    {
+        overflow: visible;
+    }
+  * {
+    font-family: "Saira", sans-serif;
+    font-weight: 400;
+  }
+
+  h5 {
+    font-size: 20px;
+    color: white;
+    margin: 40px;
+    text-align: justify;
+  }
+
+  .homepage
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
+
+#welcome-title {
+    transition: opacity 1s;
+  }
+</style>
+
+<body>
+    <div class="topbar">
+        <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
+        <a class="contentRight" href="index.html">Home</a>
+        <a class="contentRight" href="aboutus.html">About us</a>
+        <button class="contentRightbutton" id="menu" style="border-radius: 3px; border-color: transparent;" onclick="">Areas</button>
+    </div>
+    <div style="position: relative; text-align: center; width: 100%; height: 650px;">
+        <h5>We are developing an interactive web platform to support smarter decision-making in Asunción, Paraguay, through automated remote sensing analyses such as NDVI, NDBI, MNDWI, slope, air pollution, hospital accessibility, fire, or structural collapse during heavy rains. Using suitability models built in ArcGIS Pro and automated through ModelBuilder, along with a custom Landsat image downloading and processing script, we modeled the likelihood of different disasters occurring across the city. The platform also promotes citizen participation through surveys on water pollution, waste management, public spaces, and healthcare quality—rewarding users for their input. Additionally, we created an online forum to foster collaboration and a strong sense of community engagement.
+
+        We developed this platform because we believe that smart decision-making is essential for improving the lives of people everywhere. Observing in our own communities the negative impacts of decisions made without reliable data highlights the importance of building smart cities with strong networks and active citizen collaboration. Collaborating with the Paraguay Space Agency, we saw an opportunity to create a model that can be replicated globally, starting in Asunción, where our close partnership allows it to be quickly adopted and put into practice.</h5>
+        <img src="https://i.ibb.co/XZShL0G3/foto.jpg"style="text-align: center; width=30%; height=30%;">
+        <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo" style="text-align: center;">
+    </div>
+</body>
+</html>
+
+<script>
+    button = document.getElementById("menu");
+    function dropdown() {
+        const menuButton = document.getElementById("menu");
+        let dropdown = document.getElementById("dropdown-menu");
+        if (!dropdown) {
+            dropdown = document.createElement("div");
+            dropdown.id = "dropdown-menu";
+            dropdown.style.position = "absolute";
+            dropdown.style.top = (menuButton.offsetTop + menuButton.offsetHeight) + "px";
+            dropdown.style.left = menuButton.offsetLeft + "px";
+            dropdown.style.background = "#0095ff";
+            dropdown.style.borderRadius = "7px";
+            dropdown.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+            dropdown.style.padding = "10px";
+            dropdown.style.zIndex = "1000";
+            dropdown.innerHTML = `
+            <a href="areas/hidro.html" style="display:block; margin-bottom:8px;">Hidrology</a>
+            <a href="areas/waste.html" style="display:block; margin-bottom:8px;">Waste</a>
+            <a href="areas/PA.html" style="display:block; margin-bottom:8px;">public Areas</a>
+            <a href="areas/HE.html" style="display:block; margin-bottom:8px;">Healtcare</a>
+            <a href="areas/EL.html" style="display:block; margin-bottom:8px;">Heat Zones</a>
+            <a href="areas/AGR.html" style="display:block; margin-bottom:8px;">Agriculture</a>
+            `;
+            document.body.appendChild(dropdown);
+
+            document.addEventListener("click", function handler(e) {
+            if (!dropdown.contains(e.target) && e.target !== menuButton) {
+                dropdown.remove();
+                document.removeEventListener("click", handler);
+            }
+            });
+        } else {
+            dropdown.remove();
+        }
+    }
+
+    button.onmouseover = function() {
+        dropdown();
+    };
+
+    button.onmouseout = function() {
+        dropdown.onmouseout = function() {
+            dropdown();
+        };
+    };
+</script>
