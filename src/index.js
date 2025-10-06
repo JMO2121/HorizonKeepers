@@ -26,6 +26,3 @@ app.use('/api/hidrologymessage', require('./routes/Hidrologymessage'));
 app.use('/api/wastemessages', require('./routes/Wastemessages'));
 app.use('/api/pamessage', require('./routes/Pamessage'));
 app.use('/api/healthmessage', require('./routes/Healthmessage'));
-app.use('/api/electricity', require('./routes/Electricity'));
-app.use('/api/agriculture', require('./routes/Agriculture'));
-app.use('/api/urbanexpansion', require('./routes/Urbanexpansion'));
