@@ -15,12 +15,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/chat.html'));
 });
 
-app.use('/api/Hidrologymessage', require('./routes/Hidrologymessage'));
-app.use('/api/Wastemessages', require('./routes/Wastemessages'));
-app.use('/api/Pamessage', require('./routes/Pamessage'));
-app.use('/api/Healthmessage', require('./routes/Healthmessage'));
-app.use('/api/Electricity', require('./routes/Electricity'));
-app.use('/api/Agriculture', require('./routes/Agriculture'));
-app.use('/api/Urbanexpansion', require('./routes/Urbanexpansion'));
+// Cambia los endpoints a minúsculas
+app.use('/api/hidrologymessage', require('./routes/Hidrologymessage'));
+app.use('/api/wastemessages', require('./routes/Wastemessages'));
+app.use('/api/pamessage', require('./routes/Pamessage'));
+app.use('/api/healthmessage', require('./routes/Healthmessage'));
+app.use('/api/electricity', require('./routes/Electricity'));
+app.use('/api/agriculture', require('./routes/Agriculture'));
+app.use('/api/urbanexpansion', require('./routes/Urbanexpansion'));
 
 app.listen(port);
