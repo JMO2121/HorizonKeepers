@@ -9,41 +9,131 @@
 <meta name="google-client_id" content="441050350069-l0f2kl3pe40uf6pcok4ilbmk8ch7gcji.apps.googleusercontent.com">
 
 <style>
-  * { font-family: "Saira", sans-serif; font-weight: 400; }
-  #chat { margin-top: 20px; list-style: none; padding: 0; max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
-  #messageForm { margin-top: 10px; }
-  #message { width: 300px; padding: 5px; }
-  button { padding: 5px 10px; cursor: pointer; }
+  * {
+    font-family: "Saira", sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #7a90ff;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #5604D7;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 25px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  .topbar img {
+    height: 70px;
+  }
+
+  .topbar h5 {
+    margin: 0;
+    color: white;
+  }
+
+  .chat-container {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  #g_id_onload,
+  .g_id_signin {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  #chat {
+    margin-top: 20px;
+    list-style: none;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    text-align: left;
+  }
+
+  #messageForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  #message {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #5604D7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #3a00a8;
+  }
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-<!-- Topbar -->
 <div class="topbar">
-    <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
-    <h5> Welcome to the Waste chat</h5>
+    <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo">
+    <h5>Welcome to the Waste chat</h5>
 </div>
 
-<!-- Google Sign-In -->
-<div id="g_id_onload"
-     data-client_id="441050350069-l0f2kl3pe40uf6pcok4ilbmk8ch7gcji.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse"
-     data-auto_prompt="false">
+<div class="chat-container">
+  <div id="g_id_onload"
+      data-client_id="441050350069-l0f2kl3pe40uf6pcok4ilbmk8ch7gcji.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse"
+      data-auto_prompt="false">
+  </div>
+
+  <div class="g_id_signin" data-type="standard"></div>
+
+  <form id="messageForm">
+      <input type="text" id="message" name="message" placeholder="Type a message..." required>
+      <button type="submit">Send</button>
+  </form>
+
+  <ul id="chat"></ul>
 </div>
-
-<div class="g_id_signin" data-type="standard"></div>
-
-<!-- Chat -->
-<form id="messageForm">
-    <input type="text" id="message" name="message" placeholder="Type a message..." required>
-    <button type="submit">Send</button>
-</form>
-
-<ul id="chat"></ul>
 
 <script>
 let currentUser = null;
-
 
 function handleCredentialResponse(response) {
     const data = parseJwt(response.credential);

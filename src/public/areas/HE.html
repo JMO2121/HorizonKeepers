@@ -1,152 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>UrbanSight : Healtcare</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="../stylebasic.css">
+<meta charset="UTF-8">
+<title>UrbanSight : Healtcare</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<link rel="stylesheet" href="../stylebasic.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <style>
-    body
-    {
-        overflow: visible;
-    }
-  * {
-    font-family: "Saira", sans-serif;
-    font-weight: 400;
+  * { font-family: "Saira", sans-serif; font-weight: 400; box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #7a90ff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: visible;
   }
-  .buttone:hover {
-    color: #d9ff00;
-    text-decoration:underline;
-}
-  #experienceBuilderFrame {
-    width: 85%;
-    height: 620px;
+
+  .topbar img { height: 70px; }
+  .topbar a { margin-left: 10px; }
+
+  .main-content {
+    display: flex;
+    margin-top: 80px;
+    gap: 20px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    gap: 15px;
+    align-items: center;
+  }
+
+  #chat {
+    width: 100%;
+    height: 350px; 
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background: white;
+  }
+
+  .report-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    background-color: yellow;
+    color: black;
     border: none;
-    margin-top: -10px;
-    margin-left: auto;
-    }
-    #chat { width: 170px; height: 530px; margin-top: 75px; margin-left: -147px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto}
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+
+  .report-button:hover {
+    background-color: #f0e100;
+    text-decoration: underline;
+  }
+
+  .right-panel {
+    flex: 1;
+    min-width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #experienceBuilderFrame {
+    width: 100%;
+    height: 340px; 
+    border: none;
+    border-radius: 6px;
+  }
 </style>
+</head>
 
 <body>
-    <div class="topbar">
-        <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
-        <a class="contentRight" href="../index.html">Home</a>
-        <a class="contentRight" href="../chatareas/HE.html" target="_blank">Chat</a>
-        <button class="contentRightbutton" id="menu" onclick="">Areas</button>
-    </div>
+<div class="topbar">
+    <img src="https://i.ibb.co/k2CKQk9C/logo.png" alt="Horizon Keepers Logo">
+    <a class="contentRight" href="../index.html">Home</a>
+    <a class="contentRight" href="../chatareas/HE.html" target="_blank">Chat</a>
+</div>
 
-    <header class="container">
-        <a class="buttone" style="font-size: 50px; margin-top: -50px; margin-left: 25px;" href="https://survey123.arcgis.com/share/05fcf40c94834916807ef4478976fec7?portalUrl=https://agustinaschitre.maps.arcgis.com" target="_blank">Report</a>
-        <h6 style="color: white; font-size: 30px; margin-top: 30px; margin-left: -125px;">Chat:</h6>
-        <ul id="chat"></ul>
-        <iframe
-            id="experienceBuilderFrame"
-            src="https://agustinaschitre.maps.arcgis.com/apps/dashboards/46b39fb1b4fe4e978a976ec632606f72"
-            allowfullscreen
-        ></iframe>
-        <iframe
-            id="experienceBuilderFrame"
-            src="https://experience.arcgis.com/experience/b9bb5caf21c84e7ebc8de8e73247a5b8"
-            allowfullscreen
-        ></iframe>
-    </header>
-</body>
-</html>
+<div class="main-content">
+  <div class="left-panel">
+    <h3 style="color:white; text-align:center;">Chat (read-only)</h3>
+    <ul id="chat"></ul>
+    <a href="https://survey123.arcgis.com/share/05fcf40c94834916807ef4478976fec7?portalUrl=https://agustinaschitre.maps.arcgis.com" target="_blank" class="report-button">Report</a>
+  </div>
+
+  <div class="right-panel">
+    <iframe id="experienceBuilderFrame" 
+      src="https://agustinaschitre.maps.arcgis.com/apps/dashboards/46b39fb1b4fe4e978a976ec632606f72" 
+      allowfullscreen>
+    </iframe>
+    <iframe id="experienceBuilderFrame" 
+      src="https://experience.arcgis.com/experience/b9bb5caf21c84e7ebc8de8e73247a5b8" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
 
 <script>
-    function renderMessage(message) {
-        const nameWithLevel = `${message.sender} (Nivel ${message.level || 1})`;
-        return `<li><strong>${nameWithLevel}:</strong> <small>${message.content}</small></li>`;
-    } 
-
-    button = document.getElementById("menu");
-    function dropdown() {
-        const menuButton = document.getElementById("menu");
-        let dropdown = document.getElementById("dropdown-menu");
-        if (!dropdown) {
-            dropdown = document.createElement("div");
-            dropdown.id = "dropdown-menu";
-            dropdown.style.position = "absolute";
-            dropdown.style.top = (menuButton.offsetTop + menuButton.offsetHeight) + "px";
-            dropdown.style.left = menuButton.offsetLeft + "px";
-            dropdown.style.background = "#0095ff";
-            dropdown.style.borderRadius = "7px";
-            dropdown.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
-            dropdown.style.padding = "10px";
-            dropdown.style.zIndex = "1000";
-            dropdown.innerHTML = `
-            <a href="hidro.html" style="display:block; margin-bottom:8px;">Hidrology</a>
-            <a href="waste.html" style="display:block; margin-bottom:8px;">Waste</a>
-            <a href="PA.html" style="display:block; margin-bottom:8px;">public Areas</a>
-            <a href="HE.html" style="display:block; margin-bottom:8px;">Healtcare</a>
-            <a href="EL.html" style="display:block; margin-bottom:8px;">Heat Zones</a>
-            <a href="AGR.html" style="display:block; margin-bottom:8px;">Agriculture</a>
-            `;
-            document.body.appendChild(dropdown);
-
-            document.addEventListener("click", function handler(e) {
-            if (!dropdown.contains(e.target) && e.target !== menuButton) {
-                dropdown.remove();
-                document.removeEventListener("click", handler);
-            }
-            });
-        } else {
-            dropdown.remove();
-        }
-    }
-
-    button.onmouseover = function() {
-        dropdown();
-    };
-
-    button.onmouseout = function() {
-        dropdown.onmouseout = function() {
-            dropdown();
-        };
-    };
-
-    let currentUser = null;
-
-
-function handleCredentialResponse(response) {
-    const data = parseJwt(response.credential);
-    currentUser = {
-        name: data.name,
-        email: data.email
-    };
-    console.log("Google user:", currentUser);
-
-    const form = document.getElementById('messageForm');
-    const elem = document.createElement('h2');
-    elem.id = 'username-display';
-    elem.innerText = `Welcome ${currentUser.name}`;
-    form.insertAdjacentElement('beforebegin', elem);
-}
-
-function parseJwt (token) {
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-}
-
-const form = document.getElementById('messageForm');
-const defaultUser = `User${Math.floor(Math.random() * 10000)}`;
-
 function renderMessage(message) {
     const nameWithLevel = `${message.sender} (Nivel ${message.level || 1})`;
     return `<li><strong>${nameWithLevel}:</strong> <small>${message.content}</small></li>`;
-}
+} 
 
 async function fetchMessages() {
     try {
@@ -165,3 +138,5 @@ async function fetchMessages() {
 setInterval(fetchMessages, 5000);
 fetchMessages();
 </script>
+</body>
+</html>
