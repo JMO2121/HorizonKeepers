@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   if (!process.env.MONGO_URI) {
-    console.error('Error: MONGO_URI no está definido en las variables de entorno');
-    process.exit(1);
+    throw new Error('MONGO_URI no está definido en las variables de entorno');
   }
 
   try {
@@ -12,8 +11,8 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log('MongoDB connected successfully');
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
     process.exit(1);
   }
 };
