@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
+console.log('MONGO_URI:', process.env.MONGO_URI);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
