@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Horizon Keepers : Electricity : Chat</title>
+<title>Horizon Keepers : Heat Zones : Chat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../stylebasic.css">
 
@@ -20,7 +20,7 @@
 <body>
 <div class="topbar">
     <img src="https://assets.spaceappschallenge.org/media/images/Colorway2-Color_White3x.width-440.jpegquality-60.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
-    <h5> Welcome to the Electricity chat</h5>
+    <h5> Welcome to the Heat Zones chat</h5>
 </div>
 
 <div id="g_id_onload"
@@ -101,7 +101,7 @@ form.addEventListener('submit', async (event) => {
 
 async function fetchMessages() {
     try {
-        const response = await fetch('/api/electricity');
+        const response = await fetch('/api/Electricity');
         const messagesArr = await response.json();
         const chat = document.getElementById('chat');
         chat.innerHTML = '';

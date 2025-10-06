@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Horizon Keepers : Electricity</title>
+    <title>Horizon Keepers : Heat Zones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="../stylebasic.css">
@@ -17,34 +17,47 @@
     font-family: "Saira", sans-serif;
     font-weight: 400;
   }
-
-    #experienceBuilderFrame {
-        width: 50vw;
-        height: 50vh;
-        border: none;
+  .buttone:hover {
+    color: #d9ff00;
+    text-decoration:underline;
+}
+  #experienceBuilderFrame {
+    width: 85%;
+    height: 620px;
+    border: none;
+    margin-top: -10px;
+    margin-left: auto;
     }
+    #chat { width: 170px; height: 530px; margin-top: 75px; margin-left: -147px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto}
 </style>
 
 <body>
     <div class="topbar">
         <img src="https://assets.spaceappschallenge.org/media/images/Colorway2-Color_White3x.width-440.jpegquality-60.png" alt="Horizon Keepers Logo" style="height:70px; vertical-align:middle; margin-right:10px;">
         <a class="contentRight" href="../index.html">Home</a>
-        <a class="contentRight" href="../chatareas/EL.html" target="_blank">Chat</a>
+        <a class="contentRight" href="../chatareas/HE.html" target="_blank">Chat</a>
         <button class="contentRightbutton" id="menu" onclick="">Areas</button>
     </div>
 
     <header class="container">
+        <a class="buttone" style="font-size: 50px; margin-top: -50px; margin-left: 25px;" href="https://survey123.arcgis.com/share/0bc3611a9ea74f9fad5ec6de91e40e11" target="_blank">Report</a>
+        <h6 style="color: white; font-size: 30px; margin-top: 30px; margin-left: -125px;">Chat:</h6>
+        <ul id="chat"></ul>
         <iframe
-            style="width: 1134px; height: 595px;"
             id="experienceBuilderFrame"
-            src="https://agustinaschitre.maps.arcgis.com/apps/dashboards/98e608613d964e64bc3616374ef56bba"
+            src="https://agustinaschitre.maps.arcgis.com/apps/dashboards/46b39fb1b4fe4e978a976ec632606f72"
             allowfullscreen
         ></iframe>
     </header>
 </body>
 </html>
 
-<script>    
+<script>
+    function renderMessage(message) {
+        const nameWithLevel = `${message.sender} (Nivel ${message.level || 1})`;
+        return `<li><strong>${nameWithLevel}:</strong> <small>${message.content}</small></li>`;
+    } 
+
     button = document.getElementById("menu");
     function dropdown() {
         const menuButton = document.getElementById("menu");
@@ -65,7 +78,7 @@
             <a href="waste.html" style="display:block; margin-bottom:8px;">Waste</a>
             <a href="PA.html" style="display:block; margin-bottom:8px;">public Areas</a>
             <a href="HE.html" style="display:block; margin-bottom:8px;">Healtcare</a>
-            <a href="EL.html" style="display:block; margin-bottom:8px;">Electricity</a>
+            <a href="EL.html" style="display:block; margin-bottom:8px;">Heat Zones</a>
             <a href="AGR.html" style="display:block; margin-bottom:8px;">Agriculture</a>
             <a href="URB.html" style="display:block; margin-bottom:8px;">Urban Expansion</a>
             `;
@@ -91,4 +104,56 @@
             dropdown();
         };
     };
+
+    let currentUser = null;
+
+
+function handleCredentialResponse(response) {
+    const data = parseJwt(response.credential);
+    currentUser = {
+        name: data.name,
+        email: data.email
+    };
+    console.log("Google user:", currentUser);
+
+    const form = document.getElementById('messageForm');
+    const elem = document.createElement('h2');
+    elem.id = 'username-display';
+    elem.innerText = `Welcome ${currentUser.name}`;
+    form.insertAdjacentElement('beforebegin', elem);
+}
+
+function parseJwt (token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+}
+
+const form = document.getElementById('messageForm');
+const defaultUser = `User${Math.floor(Math.random() * 10000)}`;
+
+function renderMessage(message) {
+    const nameWithLevel = `${message.sender} (Nivel ${message.level || 1})`;
+    return `<li><strong>${nameWithLevel}:</strong> <small>${message.content}</small></li>`;
+}
+
+async function fetchMessages() {
+    try {
+        const response = await fetch('/api/El');
+        const messagesArr = await response.json();
+        const chat = document.getElementById('chat');
+        chat.innerHTML = '';
+        messagesArr.forEach(message => {
+            chat.insertAdjacentHTML('beforeend', renderMessage(message));
+        });
+    } catch (err) {
+        console.error("Error al obtener mensajes:", err);
+    }
+}
+
+setInterval(fetchMessages, 5000);
+fetchMessages();
 </script>
